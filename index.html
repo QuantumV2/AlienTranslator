@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Wait I'm Alien</title>
+</head>
+
+<body>
+  <textarea id="textInput" rows="4" cols="50" class="slider"></textarea>
+  <buttons_list><button onclick="replaceWords()" class="misbutton">Gnarpify</button></buttons_list>
+  <p id="output"></p>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script>
+
+
+    String.prototype.removeDuplicate = function() {
+        const set = new Set(this.split(''))
+        return [...set].join('')
+    }
+    function translate(str) {
+        if(str == undefined || str == "undefined" || str == "" || str == " ") { return str; }
+        var postfix = str.length > 5 ? (str.length> 8 ) ? "us" : "lorp" : "arp";
+        return (Array.from(str)[0] + str.split("").reverse().join("").slice(1) + postfix).toLowerCase().removeDuplicate();
+    }
+    function cleanWord(word) {
+      const cleanedWord = word.replace(/[^\w\s]|_/g, "").replace("?", "");
+      return cleanedWord
+    }
+    function replaceWords() {
+      var words = document.getElementById("textInput").value.split(" ");
+      var newWords = []
+      for(const word of words)
+      {
+          newWords.push(translate(word))
+      }
+      document.getElementById("output").textContent = newWords.join(" ");
+
+    }
+  </script>
+</body>
+
+</html>
